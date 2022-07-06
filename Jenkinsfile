@@ -26,7 +26,7 @@ pipeline {
         }
 		stage('SonarQube analysis') {
             steps {
-				withSonarQubeEnv('local') {
+				withSonarQubeEnv('sonar') {
 					sh 'mvn sonar:sonar'
 				}
 			}
