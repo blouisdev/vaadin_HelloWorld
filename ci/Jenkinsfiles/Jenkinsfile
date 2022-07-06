@@ -38,26 +38,5 @@ pipeline {
               }
             }
         }
-        stage("Deploy") {
-            steps {
-              archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
-            }
-        }
-        stage ('Upload file') {
-            steps {
-                rtUpload (
-                    // Obtain an Artifactory server instance, defined in Jenkins --> Manage Jenkins --> Configure System:
-                    serverId: 'jfrog',
-                    spec: """{
-                            "files": [
-                                    {
-                                        "pattern": "target/mytodo-1.0-SNAPSHOT.jar",
-                                        "target": "libs-release-local"
-                                    }
-                                ]
-                            }"""
-                )
-            }
-        }
     }
 }
